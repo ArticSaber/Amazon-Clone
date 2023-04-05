@@ -3,9 +3,10 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
 import Checkout from "./components/Checkout";
+import { DataProvider } from "./components/DataProvider";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import reducer, { initialState } from "./components/reducer";
-import StateProvider from "./components/StateProvider";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,15 +18,15 @@ const router = createBrowserRouter([
   },
   {
     path: "/Login",
-    element: <h1>Login page</h1>,
+    element: <Login />,
+  },
+  {
+    path: "/Signup",
+    element: <Signup />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />,
-  <React.StrictMode>
-    <StateProvider initialState={initialState} reducer={reducer}>
-      <App />
-    </StateProvider>
-    ,
-  </React.StrictMode>
+  <DataProvider>
+      <RouterProvider router={router} />,
+  </DataProvider>
 );

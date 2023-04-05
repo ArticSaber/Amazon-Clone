@@ -57,6 +57,7 @@ function Home() {
       <div className="home-row">
         <Products
           id="123321123"
+          category=""
           title="hello im an your product"
           price={20000}
           image="https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg"
@@ -64,6 +65,7 @@ function Home() {
         />
         <Products
           id="456754567"
+          category=""
           title="hello im your second product "
           price={5000}
           image="https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg"
@@ -71,12 +73,12 @@ function Home() {
         />
         <Products
           id="123321123"
-          title="hello im  your third product"
+          category=""
+          title="hello im  your third produc"
           price={2900}
           image="https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg"
           rating={5}
         />
-
       </div>
       <div className="home-row">
         <Products />
