@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Header.css";
 import { ImSearch } from "react-icons/Im";
-import { GrCart } from "react-icons/gr";
 function Header() {
   return (
     <nav className="header">
@@ -16,7 +15,7 @@ function Header() {
         <input type="text" className="header_searchInput" />
       </div>
       <div className="icon">
-        <button>
+        <button className="search-button">
           <ImSearch className="header_searchIcon" />
         </button>
       </div>
@@ -43,8 +42,8 @@ function Header() {
         </Link>
         <Link to="/checkout" className="header_link">
           <div className="header_optionBasket">
-            <GrCart style={{ color: "red" }} className="carticon" />
-            <span>0</span>
+            <img className="carticon" src="/assets/Vector.png" />
+            <span className="lineone linetwo gap">0</span>
           </div>
         </Link>
       </div>

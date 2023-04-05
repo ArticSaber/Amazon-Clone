@@ -1,14 +1,14 @@
-@font-face {
+/* @font-face {
   font-family: officinaSansStd-Bold;
   src: url("./components/assets/banner/OfficinaSansStd-Bold.otf");
-}
+} */
 :root {
-  font-family: officinaSansStd-Bold;
+font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   /* color-scheme: light dark; */
-  background-color: #ffffff;
+  background-color: rgb(234,237,237);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
