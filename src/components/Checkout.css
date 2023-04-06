@@ -1,8 +1,11 @@
 .checkout {
   display: flex;
+  align-items: center;
+  flex-direction: column;
   padding: 20px;
   background-color: white;
   height: max-content;
+  gap: 2rem;
 }
 
 .checkoutAd {
@@ -10,20 +13,101 @@
   margin-bottom: 10px;
 }
 
-.checkout-left{
-    width: 70%;
+.checkout-left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
 }
 
-.checkout-right{
-    width: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.checkout-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
 }
 
-.checkout-title{
-    margin-right: 10px;
-    padding: 10px;
-    border-bottom: 1px solid lightgray;
+.checkout-title {
+  margin-right: 10px;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
 }
 
+.subtotal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 20rem;
+  height: 10rem;
+  padding: 10px;
+  background-color: #f3f3f3;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+}
+
+.subtotal > button {
+  background-color: #f0c14b;
+  border-radius: 2px;
+  width: 100%;
+  height: 30px;
+  border: 1px solid;
+  margin-top: 10px;
+  border-color: #a88734 #9c7e31 #846a29;
+  color: #111;
+}
+
+.products {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.cart-items-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30vw;
+  height: 40vh;
+}
+
+.main-container {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  height: max-content;
+  margin-top: 1rem;
+  gap: 2rem;
+}
+.image {
+  max-height: 20rem;
+  width: 100%;
+  object-fit: contain;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.total-price {
+  font-weight: 800;
+}
+.total-price-name {
+  font-weight: 800;
+}
+.cart-items-price {
+  font-weight: 800;
+}
+
+.cart-items-name {
+  display: flex;
+  flex-direction: column;
+}

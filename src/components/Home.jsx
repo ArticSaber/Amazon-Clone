@@ -1,16 +1,17 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import "./Home.css";
 import Products from "./products";
 
 function Home() {
-    function Slider(Counter) {
-    const Slides = document.querySelectorAll(".homeimg")
+
+  function Slider(Counter) {
+    const Slides = document.querySelectorAll(".homeimg");
     Slides.forEach((slide, index) => {
       if (index !== Counter) {
         slide.style.visibility = `hidden`;
         slide.classList.add(`image-${index}`);
       }
-    })
+    });
     moveCarousal(Counter, Slides, Slides.length);
   }
   function moveCarousal(Counter, Slides, len) {
@@ -20,8 +21,7 @@ function Home() {
       Slides.forEach((slide, index) => {
         if (index == Counter) {
           slide.style.visibility = `visible`;
-        }
-        else {
+        } else {
           slide.style.visibility = `hidden`;
         }
       });
@@ -30,9 +30,9 @@ function Home() {
       moveCarousal(Counter, Slides, len);
     }, 4000);
   }
-  
-    useEffect(() =>Slider(0),[] )
-  
+
+  useEffect(() => Slider(0), []);
+
   return (
     <div className="home">
       <div className="homeContainer">
@@ -55,38 +55,9 @@ function Home() {
         </div>
       </div>
       <div className="home-row">
-        <Products
-          id="123321123"
-          category=""
-          title="hello im an your product"
-          price={20000}
-          image="https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg"
-          rating={2}
-        />
-        <Products
-          id="456754567"
-          category=""
-          title="hello im your second product "
-          price={5000}
-          image="https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg"
-          rating={3}
-        />
-        <Products
-          id="123321123"
-          category=""
-          title="hello im  your third produc"
-          price={2900}
-          image="https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg"
-          rating={5}
-        />
-      </div>
-      <div className="home-row">
-        <Products />
         <Products />
       </div>
-      <div className="home-row">
-        <Products />
-      </div>
+
     </div>
   );
 }

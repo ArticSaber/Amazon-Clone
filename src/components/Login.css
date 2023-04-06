@@ -4,9 +4,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-self:center;
 }
 .login-logo {
-  margin-top: 20px;
+  margin-top: 7rem;
   margin-bottom: 20px;
   object-fit: contain;
   width: 100px;
@@ -56,15 +57,13 @@
   cursor: pointer;
 }
 
-/* .register-button {
+.register-button {
+  background-color: white;
+  border-radius: 2px;
   width: 100%;
-  justify-content: center;
-  gap: 1rem;
-  display: flex;
-  text-decoration: none;
+  height: 30px;
+  border: 1px solid;
+  margin-top: 10px;
+  border-color: #a88734 #9c7e31 #846a29;
   cursor: pointer;
 }
-
-.register-button:link{
-    text-decoration: none;
-} */

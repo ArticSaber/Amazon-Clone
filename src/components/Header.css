@@ -5,6 +5,7 @@
   height: 10vh;
   width: 100%;
   background-color: #131921;
+  color: white;
   top: 0;
   z-index: 9999;
 }
@@ -20,7 +21,6 @@
   height: 2.3rem;
   width: 100%;
   border: none;
-
 }
 
 .search-button {
@@ -59,11 +59,13 @@
 
 .lineone {
   font-size: 10px;
+  cursor: pointer;
 }
 
 .linetwo {
   font-size: 1rem;
   font-weight: 1000;
+  cursor: pointer;
 }
 
 .header_optionBasket {
@@ -94,11 +96,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-    border-top-right-radius: 0.1rem;
+  border-top-right-radius: 0.1rem;
   border-bottom-right-radius: 0.1rem;
 }
 
-.all-list{
+.all-list {
   position: absolute;
   justify-content: center;
   width: 10rem;
@@ -113,4 +115,66 @@
   gap: 1rem;
   z-index: 50;
   list-style-type: none;
+}
+
+.logout-button {
+  display: flex;
+  margin-top: 5px;
+  color: white;
+  background-color: black;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 1000;
+}
+
+.dropdown {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: rgb(168, 168, 168);
+  height: 2.47rem;
+  width: 3rem;
+  font-weight: 500;
+}
+
+.dropdown .dropdown-toggle {
+  background-color: #ffffff;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown .dropdown-menu {
+  height: 30rem;
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  position: absolute;
+  left: -1px;
+  top: 35px;
+  background-color: #F3F3F3;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
+  color: black;
+  z-index: 1;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.dropdown .dropdown-menu button {
+  display: block;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.dropdown .dropdown-menu button:hover {
+  background-color: #111;
 }

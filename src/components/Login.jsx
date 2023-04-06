@@ -19,17 +19,6 @@ function Login() {
     if (data.user.id) nav("/");
     console.log(data);
   };
-  const handleSignup = async (e) => {
-    e.preventDefault();
-    let { data, error } = await supabase.auth.signUp({
-      email: Email,
-      password: Password,
-    });
-    if (data.user.id) Navigate("/");
-
-    console.log(data, error);
-  };
-
   return (
     <div className="login">
       <Link to="/">
@@ -61,7 +50,7 @@ function Login() {
           By Continuing, you agree to Amazon's Conditions of Use and Privacy
           Notice
         </p>
-        {/* <Link to="/Signup"> */}
+        <Link to="/Signup">
         <button
           className="register-button"
           // onClick={handleSignup}
@@ -69,7 +58,7 @@ function Login() {
         >
           Create your Amazon account
         </button>
-        {/* </Link> */}
+        </Link>
       </div>
     </div>
   );
