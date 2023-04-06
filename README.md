@@ -1,5 +1,6 @@
 This is a Amazon clone built with ReactJS, Supabase for authentication. The project also utilizes Context API for State Management, Toastify for toast messages, React Icons for icons, React-router-dom for routing/navigation. The project uses Vite as a build tool and is hosted on Netlify.
- 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4dae2283-b13a-4ef7-874b-17a5a25bdf74/deploy-status)](https://app.netlify.com/sites/devrev-amazon-clone/deploys)
+Project is hosted on https://devrev-amazon-clone.netlify.app/
 ## Table of Contents
 - Getting Started
   - Prerequisites
@@ -42,8 +43,6 @@ To run the project locally, run the following command in the terminal:
 yarn dev
 ```
 This will start a local development server at http://localhost:5173.
-
-Project is hosted on https://devrev-amazon-clone.netlify.app/  [![Netlify Status](https://api.netlify.com/api/v1/badges/4dae2283-b13a-4ef7-874b-17a5a25bdf74/deploy-status)](https://app.netlify.com/sites/devrev-amazon-clone/deploys)
 
 To build the project for production, run the following command:
 
