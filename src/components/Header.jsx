@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import supabase from "../supabase";
 import { RiSearch2Line } from "react-icons/ri";
-import { IoMdArrowDropdown } from "react-icons/Io";
+import { MdArrowDropDown } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { DataContext } from "./DataProvider";
 import { useNavigate } from "react-router-dom";
@@ -35,7 +35,7 @@ function Header() {
         <div className="dropdown">
           <span onClick={toggleDropdown} className="all-span">
             All
-            <IoMdArrowDropdown />
+            <MdArrowDropDown />
           </span>
           {isOpen && (
             <div className="dropdown-menu">
@@ -136,7 +136,7 @@ function Header() {
         <span className="hover-text">Electronics</span>
         <span className="hover-text">
           Prime
-          <IoMdArrowDropdown />
+          <MdArrowDropDown />
         </span>
         <span className="hover-text">New Releases</span>
         <span className="hover-text">Amazon Pay</span>
