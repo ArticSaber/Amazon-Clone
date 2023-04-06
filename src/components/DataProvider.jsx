@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { createContext } from "react";
 import supabase from "../supabase";
 import Data from "./Data";
+import { useRadioGroup } from "@mui/material";
 
 export const DataContext = createContext();
 export function DataProvider({ children }) {
@@ -41,9 +42,11 @@ export function DataProvider({ children }) {
     }
   };
 
-  useEffect(async () => {
+  useEffect(async (e) => {
     const { data, error } = await supabase.auth.getSession();
-    setUserid(data.session.user.id);
+    if (Userid == null) {
+      setUserid(data.session.user.id);
+    }
   }, []);
 
   return (

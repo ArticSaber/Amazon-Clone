@@ -8,13 +8,17 @@
   color: white;
   top: 0;
   z-index: 9999;
+ 
 }
 .header_logo {
   object-fit: contain;
-  width: 100px;
+  width: 10rem;
   margin-left: 20px;
   margin-right: 20px;
   margin-top: 18px;
+}
+.header_logo:hover {
+  border: 1px solid white;
 }
 
 .header_searchInput {
@@ -31,6 +35,7 @@
   cursor: pointer;
   border-top-right-radius: 0.1rem;
   border-bottom-right-radius: 0.1rem;
+  margin-right: 1rem;
 }
 
 .header_search {
@@ -156,7 +161,7 @@
   position: absolute;
   left: -1px;
   top: 35px;
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
   border: 1px solid #ccc;
   border-radius: 3px;
   padding: 8px;
@@ -177,4 +182,54 @@
 
 .dropdown .dropdown-menu button:hover {
   background-color: #111;
+}
+
+.header-down {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 7vh;
+  width: 100%;
+  background-color: #232f3e;
+  color: white;
+  z-index: 9999;
+}
+.ham-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5vh;
+  width: 3vw;
+}
+
+.ham-nav:hover {
+  border: 1px solid white;
+}
+.header_link:hover {
+  border: 1px solid white;
+}
+
+.hover-text:hover {
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.hover-text {
+  display: flex;
+  height: 6vh;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+}
+.all{
+  width: 7vh;
+}
+
+.sell{
+  width: 6vh;
+}
+
+.dropdown-list-items:hover{
+  background-color: gray;
+  border: 1px solid black;
 }

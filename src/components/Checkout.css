@@ -6,6 +6,7 @@
   background-color: white;
   height: max-content;
   gap: 2rem;
+  overflow-x: hidden;
 }
 
 .checkoutAd {
@@ -41,15 +42,15 @@
   width: 20rem;
   height: 10rem;
   padding: 10px;
-  background-color: #f3f3f3;
-  border: 1px solid #dddddd;
+  /* background-color: #f3f3f3;
+  border: 1px solid #dddddd; */
   border-radius: 3px;
 }
 
-.subtotal > button {
+.button {
   background-color: #f0c14b;
   border-radius: 2px;
-  width: 100%;
+  width: 30%;
   height: 30px;
   border: 1px solid;
   margin-top: 10px;
@@ -82,10 +83,10 @@
 
 .main-container {
   display: flex;
+  height: 50vh;
   width: 100vw;
   justify-content: center;
   align-items: center;
-  height: max-content;
   margin-top: 1rem;
   gap: 2rem;
 }
@@ -110,4 +111,13 @@
 .cart-items-name {
   display: flex;
   flex-direction: column;
+}
+
+.button-div{
+  display: flex;
+  margin-top: 3rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }

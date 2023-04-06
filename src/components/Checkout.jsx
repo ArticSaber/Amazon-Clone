@@ -10,6 +10,7 @@ function Checkout() {
     (price, item) => price + item.quantity * item.price,
     0
   );
+  
   return (
     <>
       <Header />
@@ -48,9 +49,6 @@ function Checkout() {
             </div>
             <div className="checkout-right">
               <div className="subtotal">
-                <div className="cart-items-price">
-                  {item.quantity} *₹{item.price}
-                </div>
                 <div className="button-div">
                   <button
                     className="cart-items-add"
@@ -58,6 +56,9 @@ function Checkout() {
                   >
                     +
                   </button>
+                <div className="cart-items-price">
+                  {item.quantity} *₹{item.price}
+                </div>
                   <button
                     className="cart-items-remove"
                     onClick={() => handleRemoveProduct(item)}
@@ -65,17 +66,15 @@ function Checkout() {
                     -
                   </button>
                 </div>
-                <div className="total-price-name">
-                  Total price:
-                  <div className="total-price">₹{totalPrice}</div>
-                </div>
-                <button style={{ cursor: "pointer" }}>
-                  Proceed to Checkout
-                </button>
               </div>
             </div>
           </div>
         ))}
+                <div className="total-price-name">
+                  Total price:
+                  <div className="total-price">₹{totalPrice}</div>
+                </div>
+        <button className="button"style={{ cursor: "pointer" }}>Proceed to Checkout</button>
       </div>
     </>
   );

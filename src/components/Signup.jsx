@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import supabase from "../supabase";
 import { useNavigate } from "react-router-dom";
 import { DataContext } from "./DataProvider";
+import { toast } from "react-toastify";
 import "./Signup.css";
-function Login() {
-  const { Email, setEmail, Password, setPassword} =
-    useContext(DataContext);
+function Signup() {
+  const { Email, setEmail, Password, setPassword } = useContext(DataContext);
   const nav = useNavigate();
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -14,8 +14,12 @@ function Login() {
       email: Email,
       password: Password,
     });
-    if (data.user.id) nav("/Login");
     console.log(data, error);
+    if (error) toast.error(error.message);
+    else {
+      toast.info("Successfully signed up!");
+    }
+    if (data.user.id) nav("/Login");
   };
 
   return (
@@ -56,4 +60,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;

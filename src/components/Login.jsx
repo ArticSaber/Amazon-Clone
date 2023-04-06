@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import supabase from "../supabase";
 import { useNavigate } from "react-router-dom";
 import { DataContext } from "./DataProvider";
+import { toast } from "react-toastify";
 import "./Login.css";
 function Login() {
   const { Email, setEmail, Password, setPassword, setUserid } =
@@ -15,6 +16,8 @@ function Login() {
       email: Email,
       password: Password,
     });
+    if (error) toast.error(error.message);
+    else toast.info("Successfully logged in!");
     setUserid(data.user.id);
     if (data.user.id) nav("/");
     console.log(data);
@@ -51,13 +54,12 @@ function Login() {
           Notice
         </p>
         <Link to="/Signup">
-        <button
-          className="register-button"
-          // onClick={handleSignup}
-          type="submit"
-        >
-          Create your Amazon account
-        </button>
+          <button
+            className="register-button"
+            type="submit"
+          >
+            Create your Amazon account
+          </button>
         </Link>
       </div>
     </div>

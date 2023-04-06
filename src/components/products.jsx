@@ -8,22 +8,24 @@ function Products() {
     <div className="products">
       {productItems.map((productItems) => (
         <div className="card">
-          <p className="product-title">{productItems.title}</p>
-          <div className="product-price">
-            <p>
-              &#8377;
-              <strong>{productItems.price}</strong>
-            </p>
-          </div>
-          <div className="product-rating">
-            {Array(productItems.rating)
-              .fill()
-              .map((_, i) => (
-                <p>⭐</p>
-              ))}
+          <div className="product-text">
+            <p className="product-title">{productItems.title}</p>
+            <div className="product-price">
+              <p>
+                &#8377;
+                <strong>{productItems.price}</strong>
+              </p>
+            </div>
+            <div className="product-rating">
+              {Array(productItems.rating)
+                .fill()
+                .map((_, i) => (
+                  <p>⭐</p>
+                ))}
+            </div>
           </div>
           <img className="product-image" src={productItems.image} alt="" />
-          <div className="button">
+          <div className="button-layout">
             <button
               className="cartButton"
               onClick={() => handleAddProduct(productItems)}
@@ -36,19 +38,5 @@ function Products() {
     </div>
   );
 }
-// function Products({ id, title, image, price, rating }) {
-// const { setdispatch } = useContext(DataContext);
-// const addToCart = () => {
-//   setdispatch({
-//     type: "ADD_TO_CART",
-//     payload: {
-//       id: id,
-//       title: title,
-//       image: image,
-//       price: price,
-//       rating: rating,
-//     },
-//   });
-// };
 
 export default Products;
