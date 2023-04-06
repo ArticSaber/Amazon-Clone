@@ -88,7 +88,7 @@
 .all-dropdown {
   display: flex;
   align-items: center;
-  background-color: #d7d7d7;
+  background-color: #f3f3f3;
   height: 2.47rem;
   justify-content: center;
   width: 3rem;
@@ -120,6 +120,7 @@
   gap: 1rem;
   z-index: 50;
   list-style-type: none;
+  user-select: none;
 }
 
 .logout-button {
@@ -139,10 +140,15 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  background-color: rgb(168, 168, 168);
+  background-color: rgba(226, 226, 226, 0.588);
   height: 2.47rem;
   width: 3rem;
   font-weight: 500;
+  user-select: none;
+}
+
+.dropdown:hover{
+  background-color: rgb(193, 193, 193);
 }
 
 .dropdown .dropdown-toggle {

@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import "./Checkout.css";
 import Header from "./Header";
 import { DataContext } from "./DataProvider";
+import { toast } from "react-toastify";
 
 function Checkout() {
   const { handleAddProduct, handleRemoveProduct, cartItems } =
@@ -10,6 +11,13 @@ function Checkout() {
     (price, item) => price + item.quantity * item.price,
     0
   );
+
+ const handleCheckout = async (e) => {
+   e.preventDefault();
+   {
+     toast.info("Successfully Checked Out");
+   }
+ };
   
   return (
     <>
@@ -56,9 +64,9 @@ function Checkout() {
                   >
                     +
                   </button>
-                <div className="cart-items-price">
-                  {item.quantity} *₹{item.price}
-                </div>
+                  <div className="cart-items-price">
+                    {item.quantity} *₹{item.price}
+                  </div>
                   <button
                     className="cart-items-remove"
                     onClick={() => handleRemoveProduct(item)}
@@ -70,11 +78,20 @@ function Checkout() {
             </div>
           </div>
         ))}
-                <div className="total-price-name">
-                  Total price:
-                  <div className="total-price">₹{totalPrice}</div>
-                </div>
-        <button className="button"style={{ cursor: "pointer" }}>Proceed to Checkout</button>
+        <div className="total-price-name">
+          Total price:
+          <div className="total-price">₹{totalPrice}</div>
+        </div>
+        {/* <div className="card-details">
+          <span className="payment">Payment Method:</span>
+          <div className="card-details-div">
+          <span className="card-details-text">Card Details</span>
+          <input placeholder="Card Number" className="Card-Number" />
+          </div>
+        </div>*/}
+        <button className="button" style={{ cursor: "pointer" }} onClick={handleCheckout}>
+          Proceed to Checkout
+        </button>
       </div>
     </>
   );

@@ -6,7 +6,7 @@ import { DataContext } from "./DataProvider";
 import { toast } from "react-toastify";
 import "./Signup.css";
 function Signup() {
-  const { Email, setEmail, Password, setPassword } = useContext(DataContext);
+  const { Email, setEmail, Password, setPassword, UserName, setUserName } = useContext(DataContext);
   const nav = useNavigate();
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -15,11 +15,11 @@ function Signup() {
       password: Password,
     });
     console.log(data, error);
+    if (data.user.id) nav("/Login");
     if (error) toast.error(error.message);
     else {
       toast.info("Successfully signed up!");
     }
-    if (data.user.id) nav("/Login");
   };
 
   return (
@@ -31,6 +31,13 @@ function Signup() {
         <h1>Sign-Up</h1>
 
         <form>
+          <h5>User Name</h5>
+          <input
+            placeholder="UserName"
+            type="text"
+            value={UserName}
+            onChange={(e) => setUserName(() => e.target.value)}
+          />
           <h5>E-mail</h5>
           <input
             placeholder="Email"

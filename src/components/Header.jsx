@@ -8,7 +8,7 @@ import { DataContext } from "./DataProvider";
 import { useNavigate } from "react-router-dom";
 import "./Header.css";
 function Header() {
-  const { Userid, setUserid, cartItems } = useContext(DataContext);
+  const { Userid, setUserid, cartItems,UserName } = useContext(DataContext);
   const [isOpen, setIsOpen] = useState(false);
   const [searchInput, setsearchInput] = useState("");
   const nav = useNavigate();
@@ -51,9 +51,20 @@ function Header() {
               <div className="dropdown-list-items">Beauty</div>
               <div className="dropdown-list-items">Books</div>
               <div className="dropdown-list-items">Car & Motorbike</div>
-              <div className="dropdown-list-items">Car & Motorbike</div>
-              <div className="dropdown-list-items">Car & Motorbike</div>
-              <div className="dropdown-list-items">Car & Motorbike</div>
+              <div className="dropdown-list-items">Clothing & Accessories</div>
+              <div className="dropdown-list-items">Deals</div>
+              <div className="dropdown-list-items">Electronics</div>
+              <div className="dropdown-list-items">Furniture</div>
+              <div className="dropdown-list-items">Garden & Outdoors</div>
+              <div className="dropdown-list-items">Gift Cards</div>
+              <div className="dropdown-list-items">Grocery & Gourmet Foods</div>
+              <div className="dropdown-list-items">Health & Personal Care</div>
+              <div className="dropdown-list-items">Industrial & Scientific</div>
+              <div className="dropdown-list-items">Jewellery</div>
+              <div className="dropdown-list-items">Kindle Store</div>
+              <div className="dropdown-list-items">Luggage & Bags</div>
+              <div className="dropdown-list-items">Luxury Beauty</div>
+              <div className="dropdown-list-items">Movies & TV Shows</div>
             </div>
           )}
         </div>
@@ -82,7 +93,7 @@ function Header() {
           ) : (
             <div className="header_link">
               <div className="header_option">
-                <span className="lineone">Hello User</span>
+                  <span className="lineone">Hello { UserName}</span>
                 <div className="linetwo" onClick={handleLogout}>
                   Logout
                 </div>

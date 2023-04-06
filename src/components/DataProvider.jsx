@@ -9,6 +9,7 @@ export function DataProvider({ children }) {
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [Userid, setUserid] = useState("");
+  const [UserName, setUserName] = useState("");
   const [cartItems, setcartItems] = useState([])
   const { productItems } = Data;
 
@@ -58,6 +59,8 @@ export function DataProvider({ children }) {
         setPassword,
         Userid,
         setUserid,
+        UserName,
+        setUserName,
         cartItems,
         setcartItems,
         productItems,

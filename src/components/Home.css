@@ -38,3 +38,50 @@
   margin-right: auto;
   max-width: 1500px;
 }
+
+.footer {
+  width: 100%;
+  height: auto;
+  background-color: #232f3e;
+  color: white;
+}
+
+.col1 {
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30vh;
+}
+
+.header-span {
+  font-weight: 800;
+  font-size: large;
+}
+
+.footer-first-box {
+  display: flex;
+  flex-direction: row;
+  user-select: none;
+  /* margin-left: 30rem; */
+
+  justify-content: space-evenly;
+}
+
+.footer-second-box {
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back-to-top {
+  width: auto;
+  height: 7vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #37475a;
+  color: white;
+  font-weight: 500;
+}
