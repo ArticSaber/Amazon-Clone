@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import supabase from "../supabase";
-import { ImSearch } from "react-icons/Im";
+import { RiSearch2Line } from "react-icons/ri";
 import { IoMdArrowDropdown } from "react-icons/Io";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { DataContext } from "./DataProvider";
@@ -69,15 +69,17 @@ function Header() {
           )}
         </div>
         <div className="header_search">
-          <input type="text"
+          <input
+            type="text"
             placeholder="Search"
             value={searchInput}
-            onChange={(e)=>setsearchInput(e.target.value)}
-            className="header_searchInput" />
+            onChange={(e) => setsearchInput(e.target.value)}
+            className="header_searchInput"
+          />
         </div>
         <div className="icon">
           <button className="search-button">
-            <ImSearch className="header_searchIcon" />
+            <RiSearch2Line className="header_searchIcon" />
           </button>
         </div>
 
@@ -93,7 +95,7 @@ function Header() {
           ) : (
             <div className="header_link">
               <div className="header_option">
-                  <span className="lineone">Hello { UserName}</span>
+                <span className="lineone">Hello {UserName}</span>
                 <div className="linetwo" onClick={handleLogout}>
                   Logout
                 </div>
