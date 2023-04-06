@@ -239,3 +239,14 @@
   background-color: gray;
   border: 1px solid black;
 }
+
+@media only screen and (max-width: 600px) {
+.header{
+    display: flex;
+    flex-grow: inherit;
+    /* flex-wrap: wrap; */
+  }
+  .header_link{
+
+  }
+}
