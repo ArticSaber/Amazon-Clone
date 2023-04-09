@@ -15,10 +15,10 @@ function Header() {
   const handleLogout = async (e) => {
     e.preventDefault();
     const { error } = await supabase.auth.signOut();
-    setUserid(null);
     if (error) toast.error(error.message);
     else {
       toast.info("Successfully logged out!");
+      setUserid(null);
       // setPassword(null);
     }
     if (!Userid) nav("/login");

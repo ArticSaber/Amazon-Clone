@@ -5,7 +5,7 @@ import { DataContext } from "./DataProvider";
 function Products() {
   const { handleAddProduct, productItems } = useContext(DataContext);
   return (
-    <div className="products">
+    <div className="products" key={productItems.id}>
       {productItems.map((productItems) => (
         <div className="card">
           <div className="product-text">

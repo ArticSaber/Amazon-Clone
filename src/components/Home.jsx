@@ -36,8 +36,6 @@ function Home() {
     window.scrollTo(0, 0);
   }, []);
 
-  const topFunction={}
-
 
   return (
     <div className="home">
@@ -65,7 +63,7 @@ function Home() {
       </div>
       <div className="footer">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <div className="back-to-top" onclick={topFunction}>
+          <div className="back-to-top" >
             Back To Top
           </div>
         </Link>
