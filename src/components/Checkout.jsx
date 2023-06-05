@@ -5,20 +5,20 @@ import { DataContext } from "./DataProvider";
 import { toast } from "react-toastify";
 
 function Checkout() {
-  const { handleAddProduct, handleRemoveProduct, cartItems } =
+  const { state, handleAddProduct, handleRemoveProduct, cartItems } =
     useContext(DataContext);
   const totalPrice = cartItems.reduce(
     (price, item) => price + item.quantity * item.price,
     0
   );
 
- const handleCheckout = async (e) => {
-   e.preventDefault();
-   {
-     toast.info("Successfully Checked Out");
-   }
- };
-  
+  const handleCheckout = async (e) => {
+    e.preventDefault();
+    {
+      toast.info("Successfully Checked Out");
+    }
+  };
+
   return (
     <>
       <Header />
@@ -32,7 +32,7 @@ function Checkout() {
             <h2 className="checkout-title">Your Shopping Basket</h2>
           </div>
         </div>
-        {cartItems.length === 0 && (
+        {state.cartItems.length === 0 && (
           <>
             <img src="/assets/emptyCart.png" />
           </>
@@ -89,7 +89,11 @@ function Checkout() {
           <input placeholder="Card Number" className="Card-Number" />
           </div>
         </div>*/}
-        <button className="button" style={{ cursor: "pointer" }} onClick={handleCheckout}>
+        <button
+          className="button"
+          style={{ cursor: "pointer" }}
+          onClick={handleCheckout}
+        >
           Proceed to Checkout
         </button>
       </div>

@@ -3,32 +3,33 @@ import "./Products.css";
 import { DataContext } from "./DataProvider";
 
 function Products() {
-  const { handleAddProduct, productItems } = useContext(DataContext);
+  const { handleAddProduct, productItems, dispatch } = useContext(DataContext);
   return (
-    <div className="products" key={productItems.id}>
-      {productItems.map((productItems) => (
-        <div className="card">
+    <div className="products">
+      {productItems?.map((productItem) => (
+        <div className="card" key={productItem.id}>
           <div className="product-text">
-            <p className="product-title">{productItems.title}</p>
+            <p className="product-title">{productItem.title}</p>
             <div className="product-price">
               <p>
-                &#8377;
-                <strong>{productItems.price}</strong>
+                $<strong>{productItem.price}</strong>
               </p>
             </div>
-            <div className="product-rating">
-              {Array(productItems.rating)
+            <div className="product-rating" key={productItem.id}>
+              {Array(Math.floor(productItem.rating.rate))
                 .fill()
                 .map((_, i) => (
                   <p>⭐</p>
                 ))}
             </div>
           </div>
-          <img className="product-image" src={productItems.image} alt="" />
+          <img className="product-image" src={productItem.image} alt="" />
           <div className="button-layout">
             <button
               className="cartButton"
-              onClick={() => handleAddProduct(productItems)}
+              onClick={() =>
+                dispatch({ type: "addcart", payload: productItem })
+              }
             >
               Add to Cart
             </button>

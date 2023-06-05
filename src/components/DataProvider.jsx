@@ -1,16 +1,62 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import { createContext } from "react";
 import supabase from "../supabase";
-import Data from "./Data";
+import axios from "axios";
+
+const reducer = (state, dispatch) => {
+  switch (action.type) {
+    case "addcart": {
+      const ProductExist = cartItems.find((item) => item.id === product.id);
+      if (ProductExist) {
+        return {
+          ...state,
+          cartItems: cartItems.map((item) =>
+            item.id === product.id
+              ? { ...ProductExist, quantity: ProductExist.quantity + 1 }
+              : item
+          ),
+        };
+      } else {
+        return {
+          ...state,
+          cartItems: [...cartItems, { ...product, quantity: 1 }],
+        };
+      }
+      break;
+    }
+    case "removecart": {
+      break;
+    }
+
+    default:
+      break;
+  }
+};
 
 export const DataContext = createContext();
 export function DataProvider({ children }) {
+  // cosnt {Email, setEmail,Password, setPassword,Userid, setUserid,}
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const [Userid, setUserid] = useState("");
   const [UserName, setUserName] = useState("");
-  const [cartItems, setcartItems] = useState([])
-  const { productItems } = Data;
+  // const [cartItems, setcartItems] = useState([]);
+  const [productItems, setProductItems] = useState([]);
+  const [state, dispatch] = useReducer(reducer, {
+    cartItems: [],
+  });
+
+  useEffect(() => {
+    axios
+      .get("https://fakestoreapi.com/products")
+      .then((response) => {
+        setProductItems(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   const handleAddProduct = (product) => {
     const ProductExist = cartItems.find((item) => item.id === product.id);
@@ -52,6 +98,8 @@ export function DataProvider({ children }) {
   return (
     <DataContext.Provider
       value={{
+        state,
+        dispatch,
         Email,
         setEmail,
         Password,
@@ -60,9 +108,8 @@ export function DataProvider({ children }) {
         setUserid,
         UserName,
         setUserName,
-        cartItems,
-        setcartItems,
         productItems,
+        setProductItems,
         handleAddProduct,
         handleRemoveProduct,
       }}

@@ -8,7 +8,7 @@ import { DataContext } from "./DataProvider";
 import { useNavigate } from "react-router-dom";
 import "./Header.css";
 function Header() {
-  const { Userid, setUserid, cartItems,UserName } = useContext(DataContext);
+  const { Userid, setUserid, cartItems, UserName,state } = useContext(DataContext);
   const [isOpen, setIsOpen] = useState(false);
   const [searchInput, setsearchInput] = useState("");
   const nav = useNavigate();
@@ -117,7 +117,9 @@ function Header() {
           <Link to="/checkout" className="header_link">
             <div className="header_optionBasket">
               <img className="carticon" src="/assets/Vector.png" />
-              <span className="lineone linetwo gap">{cartItems.length}</span>
+              <span className="lineone linetwo gap">
+                {state.cartItems.length}
+              </span>
             </div>
           </Link>
         </div>
