@@ -1,31 +1,40 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import supabase from "../supabase";
+import supabase from "../../supabase";
 import { RiSearch2Line } from "react-icons/ri";
 import { MdArrowDropDown } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { DataContext } from "./DataProvider";
+import { DataContext } from "../context/DataProvider";
 import { useNavigate } from "react-router-dom";
-import "./Header.css";
-function Header() {
-  const { Userid, setUserid, cartItems, UserName,state } = useContext(DataContext);
+import { toast } from "react-toastify";
+import "./Navbar.css";
+
+function Navbar() {
+  const { state, dispatch } = useContext(DataContext);
+  const { userId, userMail } = state;
   const [isOpen, setIsOpen] = useState(false);
   const [searchInput, setsearchInput] = useState("");
   const nav = useNavigate();
-  const handleLogout = async (e) => {
-    e.preventDefault();
-    const { error } = await supabase.auth.signOut();
-    if (error) toast.error(error.message);
-    else {
-      toast.info("Successfully logged out!");
-      setUserid(null);
-      // setPassword(null);
-    }
-    if (!Userid) nav("/login");
-  };
   function toggleDropdown() {
     setIsOpen(!isOpen);
   }
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+
+    if (!state.userId) return;
+
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.info("Successfully logged out!");
+      dispatch({ type: "LOGOUT" });
+      dispatch({ type: "CHECKOUT" });
+      nav("/login");
+    }
+  };
+
   return (
     <>
       <nav className="header">
@@ -83,24 +92,21 @@ function Header() {
           </button>
         </div>
 
-        {/* 3 links*/}
         <div className="headerNav">
-          {!Userid ? (
-            <Link to="/login" className="header_link">
-              <div className="header_option">
-                <span className="lineone">Hello User</span>
-                <span className="linetwo">Sign In</span>
-              </div>
-            </Link>
-          ) : (
+          {userId ? (
             <div className="header_link">
-              <div className="header_option">
-                <span className="lineone">Hello {UserName}</span>
-                <div className="linetwo" onClick={handleLogout}>
-                  Logout
-                </div>
+              <div className="header_option" onClick={handleLogout}>
+                <span className="lineone">Hello {userMail}</span>
+                <div className="linetwo">Logout</div>
               </div>
             </div>
+          ) : (
+            <Link to="/login" className="header_link">
+              <div className="header_option">
+                <span className="lineone">Hello</span>
+                <div className="linetwo">Login</div>
+              </div>
+            </Link>
           )}
           <Link to="/login" className="header_link">
             <div className="header_option">
@@ -150,4 +156,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Navbar;

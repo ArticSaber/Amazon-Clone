@@ -1,12 +1,12 @@
-import { DataProvider } from "./components/DataProvider";
+import { DataProvider } from "./components/context/DataProvider";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Checkout from "./components/Checkout";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
+import Checkout from "./components/checkout/Checkout";
+import Login from "./components/login/Login";
+import Signup from "./components/signup/Signup";
 import App from "./App";
 import "./index.css";
 const router = createBrowserRouter([

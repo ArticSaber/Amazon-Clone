@@ -8,7 +8,6 @@
   color: white;
   top: 0;
   z-index: 9999;
- 
 }
 .header_logo {
   object-fit: contain;
@@ -54,7 +53,18 @@
   text-decoration: none;
   padding: 0.5rem;
 }
-
+.button-header_link {
+  color: white;
+  text-decoration: none;
+  background-color: #131921;
+  padding: 0.5rem;
+  border: 1px solid white;
+  border-radius: 0.2rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
 .header_option {
   display: flex;
   flex-direction: column;
@@ -147,7 +157,7 @@
   user-select: none;
 }
 
-.dropdown:hover{
+.dropdown:hover {
   background-color: rgb(193, 193, 193);
 }
 
@@ -227,26 +237,15 @@
   align-items: center;
   font-weight: 500;
 }
-.all{
+.all {
   width: 7vh;
 }
 
-.sell{
+.sell {
   width: 6vh;
 }
 
-.dropdown-list-items:hover{
+.dropdown-list-items:hover {
   background-color: gray;
   border: 1px solid black;
-}
-
-@media only screen and (max-width: 600px) {
-.header{
-    display: flex;
-    flex-grow: inherit;
-    /* flex-wrap: wrap; */
-  }
-  .header_link{
-
-  }
 }

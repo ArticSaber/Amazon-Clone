@@ -5,7 +5,7 @@
 .homeSliderContainer {
   width: auto;
   margin: 0 auto;
-  height: 40vh;
+  height: 30vh;
   position: relative;
   border-radius: 0.5rem;
 }
@@ -64,8 +64,6 @@
   flex-direction: row;
   user-select: none;
   cursor: pointer;
-  /* margin-left: 30rem; */
-
   justify-content: space-evenly;
 }
 

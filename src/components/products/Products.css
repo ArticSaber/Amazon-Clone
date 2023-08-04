@@ -1,6 +1,5 @@
-
 .products {
-  width: 100%;
+  width: auto;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -13,16 +12,21 @@
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  width: 30rem;
-  height: 40rem;
   border-radius: 5px;
   overflow: hidden;
-  padding: 10px;
-  margin:  20px;
+  padding: 10px 20px 20px 20px;
+  margin: 20px;
   background-color: white;
 }
 
-.product-rating{
+.card:hover {
+  box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+  cursor: pointer;
+  transform: scale(1.02);
+  transition: transform 0.2s ease-in-out;
+}
+
+.product-rating {
   display: flex;
 }
 
@@ -34,7 +38,7 @@
   margin-bottom: 1rem;
 }
 
-.cartButton{
+.cartButton {
   height: 3vh;
   width: 10rem;
   display: flex;
@@ -49,18 +53,15 @@
   position: relative;
 }
 
-.button-layout{
+.button-layout {
   display: flex;
   align-items: center;
-  width: 27vw;
   justify-content: center;
-  background-color: white;
 }
 
-.product-text{
+.product-text {
   display: flex;
   flex-direction: column;
-  margin-left: 3rem;
   width: 20rem;
   margin-top: 1rem;
   user-select: none;

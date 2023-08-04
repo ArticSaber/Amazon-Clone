@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Products from "./products";
+import Products from "../products/products";
 import { Link } from "react-router-dom";
 import "./Home.css";
 

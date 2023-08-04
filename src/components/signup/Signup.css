@@ -57,8 +57,19 @@
   cursor: pointer;
 }
 
-/* @media screen and {max-width: 500px;} {
-  .login{
+.password-strength {
+  font-size: 14px;
+  padding: 6px 0;
+}
 
-  }
-} */
+.weak {
+  color: red;
+}
+
+.medium {
+  color: orange;
+}
+
+.strong {
+  color: green;
+}
