@@ -2,7 +2,7 @@ This is a Amazon clone built with ReactJS, Supabase for authentication. The proj
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/fdce793a-c13c-4b7e-a1a0-d248fc1c289a/deploy-status)](https://app.netlify.com/sites/amazon-kaarthik/deploys)
 
-Project is hosted on https://devrev-amazon-clone.netlify.app/
+Project is hosted on https://amazon-kaarthik.netlify.app/
 
 ## Table of Contents
 - Getting Started
