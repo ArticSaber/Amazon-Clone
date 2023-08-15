@@ -1,63 +1,67 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { toast } from "react-toastify";
 import "./Signup.css";
-import supabase from "../../supabase";
 
 function Signup() {
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
     userName: "",
+    emailId: "",
+    Password: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState({});
   const nav = useNavigate();
 
-  const handleSignup = async (e) => {
+  const handleSignup = async(e) => {
     e.preventDefault();
-    const { email, password, userName } = formData;
-    
+    const { emailId, Password, userName } = formData;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      toast.error("Please enter a valid email address.");
+
+    if (!emailId || !emailRegex.test(emailId)) {
+      setErrors({ email: "Please enter a valid email address." });
       return;
     }
 
-
-    if (password.length < 8) {
-      toast.error("Password should be at least 8 characters long.");
+    if (!Password || Password.length < 8) {
+      setErrors({ password: "Password should be at least 8 characters long." });
       return;
     }
 
- 
-    const { data, error } = await supabase.auth.signUp({
-      email: email,
-      password: password,
-    });
+    setIsLoading(true);
+    const response = await axios
+      .post("http://localhost:3500/api/v1/auth/signup", {
+        username: userName,
+        email: emailId,
+        password: Password,
+      })
+      .then((res) => {
+        res.json();
+        setIsLoading(false);
 
-    if (data?.user?.id) {
-      nav("/Login");
-      toast.info("Successfully signed up!");
-    } else if (error) {
-      toast.error(error.message);
-    }
+        toast.success(res.data.message);
+        nav("/login");
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        toast.error(err);
+      });
+    
   };
+
+ const handleChange = (e) => {
+   setFormData({
+     ...formData,
+     [e.target.name]: e.target.value,
+   });
+ };
 
   const calculatePasswordStrength = () => {
-    const { password } = formData;
-    if (password.length >= 8) return "strong";
-    if (password.length >= 6) return "medium";
+    const { Password } = formData;
+    if (Password.length >= 8) return "strong";
+    if (Password.length >= 6) return "medium";
     return "weak";
-  };
-
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
   };
 
   return (
@@ -67,38 +71,44 @@ function Signup() {
       </Link>
       <div className="login-container">
         <h1>Sign-Up</h1>
-        <form>
+        <form onSubmit={handleSignup}>
           <h5>User Name</h5>
           <input
             placeholder="UserName"
             type="text"
             name="userName"
             value={formData.userName}
-            onChange={handleInputChange}
+            onChange={handleChange}
           />
+          {errors.userName && <p className="error">{errors.userName}</p>}
           <h5>E-mail</h5>
           <input
             placeholder="Email"
             type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
+            name="emailId"
+            value={formData.emailId}
+            onChange={handleChange}
           />
+          {errors.email && <p className="error">{errors.emailId}</p>}
           <h5>Password</h5>
           <input
             type="password"
             placeholder="Password"
-            name="password"
-            value={formData.password}
-            onChange={handleInputChange}
+            name="Password"
+            value={formData.Password}
+            onChange={handleChange}
           />
+          {errors.password && <p className="error">{errors.password}</p>}
           <div className={`password-strength ${calculatePasswordStrength()}`}>
             Password strength
           </div>
+          <div className="login-link">
+            Already have an account? <Link to="/login"> Sign in</Link>
+          </div>
+          <button className="signup-button" type="submit" disabled={isLoading}>
+            {isLoading ? "Creating Account..." : "Create your Amazon account"}
+          </button>
         </form>
-        <button className="signup-button" onClick={handleSignup} type="submit">
-          Create your Amazon account
-        </button>
       </div>
     </div>
   );

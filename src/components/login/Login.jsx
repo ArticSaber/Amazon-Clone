@@ -1,46 +1,42 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
-import supabase from "../../supabase";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { DataContext } from "../context/DataProvider";
+import { useDispatch } from "react-redux";
+import { login,fetchUserCart } from "../../redux/dataSlice";
+import axios from "axios";
 import "./Login.css";
 
 function Login() {
-  const { state, dispatch } = useContext(DataContext); // Destructure dispatch from context
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    emailId: "",
+    Password: "",
   });
   const nav = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const { email, password } = formData;
+    const { emailId, Password } = formData;
 
-    let { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
-    });
-
-    if (error) {
-      toast.error(error.message);
-    } else {
-      toast.info("Successfully logged in!");
-      dispatch({
-        type: "login",
-        userId: data.user.id,
-        userMail: data.user.email,
+    try {
+      const response = await axios
+        .post("http://localhost:3500/api/v1/auth/login", {
+          email: emailId,
+          password: Password,
+        })
+      .catch((err) => {
+        toast.error(err);
       });
-      console.log(data.user.id);
-      console.log(data.user.email);
-      setFormData((prevData) => ({ ...prevData, password: "" }));
-      if (data.user.id) {
-        nav("/");
-      }
+
+      const { token, userId, userName } = response.data;
+      dispatch(login({ userId, token, userName }));
+      dispatch(fetchUserCart(userId));
+      toast.info("Successfully logged in!");
+      nav("/");
+    } catch (error) {
+      toast.error(error.message);
     }
   };
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -62,16 +58,16 @@ function Login() {
           <input
             placeholder="Email"
             type="email"
-            name="email"
-            value={formData.email}
+            name="emailId"
+            value={formData.emailId}
             onChange={handleInputChange}
           />
           <h5>Password</h5>
           <input
             type="password"
             placeholder="Password"
-            name="password"
-            value={formData.password}
+            name="Password"
+            value={formData.Password}
             onChange={handleInputChange}
           />
           <button className="login-button" onClick={handleLogin} type="submit">

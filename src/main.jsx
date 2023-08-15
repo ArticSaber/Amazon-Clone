@@ -1,14 +1,17 @@
-import { DataProvider } from "./components/context/DataProvider";
+import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import Checkout from "./components/checkout/Checkout";
 import Login from "./components/login/Login";
 import Signup from "./components/signup/Signup";
 import App from "./App";
 import "./index.css";
+import { store } from "./redux/store";
+import { fetchProducts } from "./redux/dataSlice";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,8 +30,9 @@ const router = createBrowserRouter([
     element: <Signup />,
   },
 ]);
+
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <DataProvider>
+  <Provider store={store}>
     <RouterProvider router={router} />
     <ToastContainer
       position="top-right"
@@ -42,5 +46,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       pauseOnHover
       theme="colored"
     />
-  </DataProvider>
+  </Provider>
 );
+
+store.dispatch(fetchProducts());

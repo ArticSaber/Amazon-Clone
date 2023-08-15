@@ -1,37 +1,35 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import supabase from "../../supabase";
+import { useDispatch, useSelector } from "react-redux";
 import { RiSearch2Line } from "react-icons/ri";
 import { MdArrowDropDown } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { DataContext } from "../context/DataProvider";
-import { useNavigate } from "react-router-dom";
+import { logout } from "../../redux/dataSlice";
 import { toast } from "react-toastify";
 import "./Navbar.css";
 
 function Navbar() {
-  const { state, dispatch } = useContext(DataContext);
-  const { userId, userMail } = state;
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.data.cartItems);
+  const { userId, userName } = useSelector((state) => state.data);
+  console.log(userId, userName);
   const [isOpen, setIsOpen] = useState(false);
   const [searchInput, setsearchInput] = useState("");
   const nav = useNavigate();
+
   function toggleDropdown() {
     setIsOpen(!isOpen);
   }
 
   const handleLogout = async (e) => {
     e.preventDefault();
-
-    if (!state.userId) return;
-
-    const { error } = await supabase.auth.signOut();
-    if (error) {
+    try {
+      dispatch(logout());
+      toast.success("Logout Successfully");
+      nav("/");
+    } catch (error) {
       toast.error(error.message);
-    } else {
-      toast.info("Successfully logged out!");
-      dispatch({ type: "LOGOUT" });
-      dispatch({ type: "CHECKOUT" });
-      nav("/login");
     }
   };
 
@@ -96,7 +94,7 @@ function Navbar() {
           {userId ? (
             <div className="header_link">
               <div className="header_option" onClick={handleLogout}>
-                <span className="lineone">Hello {userMail}</span>
+                <span className="lineone">Hello{userName}</span>
                 <div className="linetwo">Logout</div>
               </div>
             </div>
@@ -123,9 +121,7 @@ function Navbar() {
           <Link to="/checkout" className="header_link">
             <div className="header_optionBasket">
               <img className="carticon" src="/assets/Vector.png" />
-              <span className="lineone linetwo gap">
-                {state.cartItems.length}
-              </span>
+              <span className="lineone linetwo gap">{cartItems.length}</span>
             </div>
           </Link>
         </div>
