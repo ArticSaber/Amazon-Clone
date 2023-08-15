@@ -1,8 +1,8 @@
 This is a Amazon clone built with ReactJS, Supabase for authentication. The project also utilizes Context API for State Management, Toastify for toast messages, React Icons for icons, React-router-dom for routing/navigation. The project uses Vite as a build tool and is hosted on Netlify.
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/4dae2283-b13a-4ef7-874b-17a5a25bdf74/deploy-status)](https://app.netlify.com/sites/devrev-amazon-clone/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/fdce793a-c13c-4b7e-a1a0-d248fc1c289a/deploy-status)](https://app.netlify.com/sites/amazon-kaarthik/deploys)
 
-Project is hosted on https://devrev-amazon-clone.netlify.app/
+Project is hosted on https://amazon-kaarthik.netlify.app/
 
 ## Table of Contents
 - Getting Started
