@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { login,fetchUserCart } from "../../redux/dataSlice";
+import { login, fetchUserCart } from "../../redux/dataSlice";
 import axios from "axios";
 import "./Login.css";
+axios.defaults.withCredentials = true;
 
 function Login() {
   const dispatch = useDispatch();
@@ -19,20 +20,34 @@ function Login() {
     const { emailId, Password } = formData;
 
     try {
+      // const response = await fetch("http://localhost:3500/api/v1/auth/login", {
+      //   cache: "no-store",
+      //   credentials: "include",
+      //   method: "POST",
+      //   header: {
+      //     "Access-Control-Allow-Origin": "*",
+      //   },
+      //   body: JSON.stringify({
+      //     email: emailId,
+      //     password: Password,
+      //   }),
+      // });
+      // const data = await response.data;
+
       const response = await axios
         .post("http://localhost:3500/api/v1/auth/login", {
           email: emailId,
           password: Password,
         })
-      .catch((err) => {
-        toast.error(err);
-      });
+        .catch((err) => {
+          toast.error(err);
+        });
 
-      const { token, userId, userName } = response.data;
-      dispatch(login({ userId, token, userName }));
-      dispatch(fetchUserCart(userId));
-      toast.info("Successfully logged in!");
-      nav("/");
+      // const { userId, userName } = response.data;
+      // dispatch(login({ userId, userName }));
+      // dispatch(fetchUserCart(userId));
+      // toast.info("Successfully logged in!");
+      // nav("/");
     } catch (error) {
       toast.error(error.message);
     }

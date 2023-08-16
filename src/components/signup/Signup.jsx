@@ -14,7 +14,7 @@ function Signup() {
   const [errors, setErrors] = useState({});
   const nav = useNavigate();
 
-  const handleSignup = async(e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
     const { emailId, Password, userName } = formData;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -31,11 +31,17 @@ function Signup() {
 
     setIsLoading(true);
     const response = await axios
-      .post("http://localhost:3500/api/v1/auth/signup", {
-        username: userName,
-        email: emailId,
-        password: Password,
-      })
+      .post(
+        "http://localhost:3500/api/v1/auth/signup",
+        {
+          username: userName,
+          email: emailId,
+          password: Password,
+        },
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         res.json();
         setIsLoading(false);
@@ -47,15 +53,14 @@ function Signup() {
         setIsLoading(false);
         toast.error(err);
       });
-    
   };
 
- const handleChange = (e) => {
-   setFormData({
-     ...formData,
-     [e.target.name]: e.target.value,
-   });
- };
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const calculatePasswordStrength = () => {
     const { Password } = formData;

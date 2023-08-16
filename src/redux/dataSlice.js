@@ -45,7 +45,6 @@ export const dataSlice = createSlice({
     productItems: [],
     userId: null,
     userName: null,
-    token: null,
   },
   reducers: {
     additems: (state, action) => {
@@ -76,12 +75,10 @@ export const dataSlice = createSlice({
     signup: (state, action) => {
       state.userId = action.payload.userId;
       state.userName = action.payload.userName;
-      state.token = action.payload.token;
     },
     login: (state, action) => {
       state.userId = action.payload.userId;
       state.userName = action.payload.userName;
-      state.token = action.payload.token;
     },
     logout: (state, action) => {
       state.cartItems = [];
