@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { API_BASE_URL } from "../../config";
+import { BASE_URL } from "../../config";
 
 export const fetchProducts = createAsyncThunk(
   "data/fetchProducts",
   async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}`);
+      const response = await axios.get(`${BASE_URL}/shoppingcart`);
       return response.data;
     } catch (error) {
       throw error;
@@ -14,29 +14,6 @@ export const fetchProducts = createAsyncThunk(
   }
 );
 
-export const fetchUserCart = createAsyncThunk(
-  "data/fetchUserCart",
-  async (userId) => {
-    try {
-      const response = await axios.get(`${API_BASE_URL}/cart/${userId}`);
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
-  }
-);
-
-export const addProductToCart = createAsyncThunk(
-  "data/addProductToCart",
-  async (product) => {
-    try {
-      const response = await axios.post(`${API_BASE_URL}/cart`, product);
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
-  }
-);
 
 export const dataSlice = createSlice({
   name: "data",
@@ -91,45 +68,6 @@ export const dataSlice = createSlice({
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.productItems = action.payload;
       })
-      .addCase(addProductToCart.fulfilled, (state, action) => {
-        const existingItem = state.cartItems.find(
-          (item) => item.productID === action.payload.productID
-        );
-        if (existingItem) {
-          existingItem.productSelectedQuantity += 1;
-        } else {
-          state.cartItems.push({
-            ...action.payload,
-            productSelectedQuantity: 1,
-          });
-        }
-      })
-      .addCase(fetchUserCart.fulfilled, (state, action) => {
-        state.cartItems = action.payload;
-      })
-      .addMatcher(
-        (action) =>
-          [addProductToCart.fulfilled, fetchUserCart.fulfilled].includes(
-            action.type
-          ),
-        (state, action) => {
-          if (action.type === addProductToCart.fulfilled.type) {
-            const existingItem = state.cartItems.find(
-              (item) => item.productID === action.payload.productID
-            );
-            if (existingItem) {
-              existingItem.productSelectedQuantity += 1;
-            } else {
-              state.cartItems.push({
-                ...action.payload,
-                productSelectedQuantity: 1,
-              });
-            }
-          } else if (action.type === fetchUserCart.fulfilled.type) {
-            state.cartItems = action.payload;
-          }
-        }
-      );
   },
 });
 

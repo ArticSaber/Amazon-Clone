@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "./Signup.css";
+import { BASE_URL } from "../../../config";
 
 function Signup() {
   const [formData, setFormData] = useState({
@@ -32,7 +33,7 @@ function Signup() {
     setIsLoading(true);
     const response = await axios
       .post(
-        "http://localhost:3500/api/v1/auth/signup",
+        `${BASE_URL}/auth/signup`,
         {
           username: userName,
           email: emailId,

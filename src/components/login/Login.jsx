@@ -2,59 +2,79 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { login, fetchUserCart } from "../../redux/dataSlice";
-import axios from "axios";
+import { login } from "../../redux/dataSlice";
+import { BASE_URL } from "../../../config";
 import "./Login.css";
-axios.defaults.withCredentials = true;
 
 function Login() {
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({
+  const [formData, setformData] = useState({
     emailId: "",
     Password: "",
   });
   const nav = useNavigate();
 
+  // const handleLogin = async (e) => {
+  //   e.preventDefault();
+  //   const { emailId, Password } = formData;
+
+  //   try {
+
+  //     const response = await axios
+  //       .post("http://localhost:3500/api/v1/auth/login", {
+  //         email: emailId,
+  //         password: Password,
+  //       })
+  //       .catch((err) => {
+  //         toast.error(err);
+  //       });
+
+  //     const { userId, userName } = response.data;
+  //     dispatch(login({ userId, userName }));
+  //     dispatch(fetchUserCart(userId));
+  //     toast.info("Successfully logged in!");
+  //     nav("/");
+  //   } catch (error) {
+  //     toast.error(error.message);
+  //   }
+  // };
   const handleLogin = async (e) => {
     e.preventDefault();
     const { emailId, Password } = formData;
 
     try {
-      // const response = await fetch("http://localhost:3500/api/v1/auth/login", {
-      //   cache: "no-store",
-      //   credentials: "include",
-      //   method: "POST",
-      //   header: {
-      //     "Access-Control-Allow-Origin": "*",
-      //   },
-      //   body: JSON.stringify({
-      //     email: emailId,
-      //     password: Password,
-      //   }),
-      // });
-      // const data = await response.data;
-
-      const response = await axios
-        .post("http://localhost:3500/api/v1/auth/login", {
+      const response = await fetch(`${BASE_URL}/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({
           email: emailId,
           password: Password,
-        })
-        .catch((err) => {
-          toast.error(err);
-        });
+        }),
+        cache: "no-store",
+        credentials: "include",
+      });
 
-      // const { userId, userName } = response.data;
-      // dispatch(login({ userId, userName }));
+      if (!response.ok) {
+        throw new Error("Login failed");
+      }
+
+      const data = await response.json();
+      const { userId, userName } = data;
+      dispatch(login({ userId, userName }));
       // dispatch(fetchUserCart(userId));
-      // toast.info("Successfully logged in!");
-      // nav("/");
+      toast.info("Successfully logged in!");
+      nav("/");
     } catch (error) {
       toast.error(error.message);
     }
   };
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
+    setformData((prevData) => ({
       ...prevData,
       [name]: value,
     }));

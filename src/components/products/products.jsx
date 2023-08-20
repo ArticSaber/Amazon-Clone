@@ -1,14 +1,13 @@
 import React from "react";
 import "./Products.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addProductToCart } from "../../redux/dataSlice";
+// import { addProductToCart } from "../../redux/dataSlice";
 
 function Products() {
   const dispatch = useDispatch();
   const productItems = useSelector((state) => state.data.productItems);
-
   const handleAddToCart = (productItem) => {
-    dispatch(addProductToCart(productItem));
+    // dispatch(addProductToCart(productItem));
   };
 
   return (
@@ -24,11 +23,12 @@ function Products() {
                 </p>
               </div>
               <div className="product-rating">
-                {/* {Array(Math.floor(productItem.rating.rate))
+                {/* {Array(Math.floor(productItem.rate))
                   .fill()
                   .map((_, i) => (
                     <p key={i}>⭐</p>
                   ))} */}
+                {productItem.count}
               </div>
             </div>
             <img className="product-image" src={productItem.image} alt="" />

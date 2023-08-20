@@ -7,6 +7,7 @@ import ReactDOM from "react-dom/client";
 import Checkout from "./components/checkout/Checkout";
 import Login from "./components/login/Login";
 import Signup from "./components/signup/Signup";
+import AdminForm from "./components/adminlogin/adminForm"
 import App from "./App";
 import "./index.css";
 import { store } from "./redux/store";
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
     path: "/Signup",
     element: <Signup />,
   },
+  {
+    path: "/admin",
+    element:<AdminForm/>,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -41,9 +46,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       newestOnTop={false}
       closeOnClick
       rtl={false}
-      pauseOnFocusLoss
       draggable
-      pauseOnHover
       theme="colored"
     />
   </Provider>
