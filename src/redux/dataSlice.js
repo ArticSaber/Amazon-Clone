@@ -15,7 +15,7 @@ export const fetchProductItems = createAsyncThunk(
     const { productItems } = getState().data;
     if (productItems.length === 0) {
       try {
-        const response = await axios.get(`${BASE_URL}/products`);
+        const response = await axios.get(`${BASE_URL}/shoppingcart`);
         return response.data;
       } catch (error) {
         throw error;
