@@ -1,141 +1,121 @@
-// import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { BASE_URL } from "../../../config";
 
-// function adminForm() {
-//   const [photo, setPhoto] = useState(null);
-//   const [edit, setEdit] = useState(false);
-//   const [Data, setData] = useState({
-//     ProductID: "",
-//     title: "",
-//     description: "",
-//     price: "",
-//     category: "",
-//     image: "",
-//     rating: "",
-//   });
+const AdminForm = () => {
+  const [productData, setProductData] = useState({
+    title: "",
+    price: "",
+    category: "",
+    stock: "",
+    description: "",
+    image: null,
+    rating: "",
+  });
 
-//   useEffect(() => {
-//     if (photo) {
-//       uploadImg();
-//     }
-//   }, [edit == false]);
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setProductData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
-//   const handleInputChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData((prevData) => ({
-//       ...prevData,
-//       [name]: value,
-//     }));
-//   };
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     const formData = new FormData();
-//     formData.append("file", photo);
-//     setPhoto(null);
-//     const response = await fetch("http://localhost:3500/api/v1/shoppingcart/admin", {
-//       cache: "no-store",
-//       credentials: "include",
-//       method: "POST",
-//       body: formData,
-//     });
-//     const { message, secure_url } = (await response.json()) || {};
-//     if (secure_url) {
-//       setData((prev) => ({
-//         ...prev,
-//         photo: secure_url,
-//       }));
-//     }
-//     setEdit((prev) => !prev);
-//   };
-//   return (
-//     <div>
-//       <form onSubmit={handleSubmit} encType="multipart/form-data">
-//         <label>ID</label>
-//         <input
-//           placeholder="ProductID"
-//           type="number"
-//           name="ProductID"
-//           value={FileData.ProductID}
-//           onChange={handleInputChange}
-//         />
-//         <label>Title:</label>
-//         <input
-//           placeholder="title"
-//           type="text"
-//           name="title"
-//           value={FileData.title}
-//           onChange={handleInputChange}
-//         />
-//         <label>Description:</label>
-//         <input
-//           placeholder="description"
-//           type="text"
-//           name="description"
-//           value={FileData.description}
-//           onChange={handleInputChange}
-//         />
-//         <label>Price:</label>
-//         <input
-//           placeholder="price"
-//           type="number"
-//           name="price"
-//           value={FileData.price}
-//           onChange={handleInputChange}
-//         />
-//         <label>
-//           Category:
-//           <select
-//             name="category"
-//             value={FileData.category}
-//             onChange={handleInputChange}
-//           >
-//             <option value="">Select a Category</option>
-//             <option value="Electronics">Electronics</option>
-//             <option value="Food & Beverages">Food & Beverages</option>
-//             <option value="Toys">Toys</option>
-//             <option value="Books">Books</option>
-//           </select>
-//         </label>
-//         <label>rating:</label>
-//         <input
-//           placeholder="rating"
-//           type="number"
-//           name="rating"
-//           value={FileData.rating}
-//           onChange={handleInputChange}
-//         />
-//         <label>image</label>
-//         {/* <input
-//           type="file"
-//           name="img"
-//           id="img"
-//           accept="image/png, image/jpeg, image/svg+xml, image/webp"
-//           onChange={(e) => {
-//             const file = e.target.files[0];
-//             setFormData((prev) => ({ ...prev, image: file }));
-//           }}
-//         /> */}
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setProductData((prevData) => ({
+      ...prevData,
+      image: file,
+    }));
+  };
 
-//         <input
-//           type="file"
-//           name="image" // Make sure this matches the field name in your backend
-//           id="image"
-//           accept="image/png, image/jpeg, image/svg+xml, image/webp"
-//           onChange={(e) => setPhoto(e.target.files[0])}
-//         />
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("image", productData.image);
+    console.log(formData, productData);
+    // try {
+      await fetch(`${BASE_URL}/products/upload`, {
+        method: "POST",
+        body: productData.image,
+      });
+    //   if (!response.ok) {
+    //     throw new Error("Failed to create product");
+    //   }
+    //   const data = await response.json();
+    //   console.log(data);
+    // } catch (error) {
+    //   console.error(error);
+    // }
+  };
 
-//         <button type="submit">upload</button>
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default adminForm;
-import React from 'react'
-
-function adminForm() {
   return (
-    <div>adminForm</div>
-  )
-}
+    <form onSubmit={handleSubmit}>
+      <label>
+        Title:
+        <input
+          type="text"
+          name="title"
+          value={productData.title}
+          onChange={handleInputChange}
+        />
+      </label>
+      <label>
+        Price:
+        <input
+          type="number"
+          name="price"
+          value={productData.price}
+          onChange={handleInputChange}
+        />
+      </label>
+      <label>
+        Category:
+        <select
+          name="category"
+          value={productData.category}
+          onChange={handleInputChange}
+        >
+          <option value="">Select a category</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Food & Beverages">Food & Beverages</option>
+          <option value="Toys">Toys</option>
+          <option value="Books">Books</option>
+          <option value="Clothing">Clothing</option>
+        </select>
+      </label>
+      <label>
+        Stock:
+        <input
+          type="number"
+          name="stock"
+          value={productData.stock}
+          onChange={handleInputChange}
+        />
+      </label>
+      <label>
+        Description:
+        <textarea
+          name="description"
+          value={productData.description}
+          onChange={handleInputChange}
+        />
+      </label>
+      <label>
+        Image:
+        <input type="file" name="image" onChange={handleImageChange} />
+      </label>
+      <label>
+        Rating:
+        <input
+          type="number"
+          name="rating"
+          value={productData.rating}
+          onChange={handleInputChange}
+        />
+      </label>
+      <button type="submit">Create Product</button>
+    </form>
+  );
+};
 
-export default adminForm
+export default AdminForm;

@@ -1,13 +1,13 @@
 import React from "react";
 import "./Products.css";
 import { useDispatch, useSelector } from "react-redux";
-// import { addProductToCart } from "../../redux/dataSlice";
+import { additems } from "../../redux/dataSlice";
 
 function Products() {
   const dispatch = useDispatch();
   const productItems = useSelector((state) => state.data.productItems);
   const handleAddToCart = (productItem) => {
-    // dispatch(addProductToCart(productItem));
+    dispatch(additems(productItem));
   };
 
   return (

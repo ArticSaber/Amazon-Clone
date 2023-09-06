@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import dataSlice, { fetchProducts } from "./dataSlice";
+import dataSlice, { fetchProductItems } from "./dataSlice";
 
 export const store = configureStore({
   reducer: {
@@ -7,6 +7,6 @@ export const store = configureStore({
   },
 });
 
-store.dispatch(fetchProducts());
+store.dispatch(fetchProductItems());
 
 export default store;

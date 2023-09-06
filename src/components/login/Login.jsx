@@ -8,36 +8,12 @@ import "./Login.css";
 
 function Login() {
   const dispatch = useDispatch();
-  const [formData, setformData] = useState({
+  const [formData, setFormData] = useState({
     emailId: "",
     Password: "",
   });
   const nav = useNavigate();
 
-  // const handleLogin = async (e) => {
-  //   e.preventDefault();
-  //   const { emailId, Password } = formData;
-
-  //   try {
-
-  //     const response = await axios
-  //       .post("http://localhost:3500/api/v1/auth/login", {
-  //         email: emailId,
-  //         password: Password,
-  //       })
-  //       .catch((err) => {
-  //         toast.error(err);
-  //       });
-
-  //     const { userId, userName } = response.data;
-  //     dispatch(login({ userId, userName }));
-  //     dispatch(fetchUserCart(userId));
-  //     toast.info("Successfully logged in!");
-  //     nav("/");
-  //   } catch (error) {
-  //     toast.error(error.message);
-  //   }
-  // };
   const handleLogin = async (e) => {
     e.preventDefault();
     const { emailId, Password } = formData;
@@ -47,13 +23,11 @@ function Login() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
           email: emailId,
           password: Password,
         }),
-        cache: "no-store",
         credentials: "include",
       });
 
@@ -64,7 +38,6 @@ function Login() {
       const data = await response.json();
       const { userId, userName } = data;
       dispatch(login({ userId, userName }));
-      // dispatch(fetchUserCart(userId));
       toast.info("Successfully logged in!");
       nav("/");
     } catch (error) {
@@ -74,7 +47,7 @@ function Login() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setformData((prevData) => ({
+    setFormData((prevData) => ({
       ...prevData,
       [name]: value,
     }));
@@ -105,7 +78,7 @@ function Login() {
             value={formData.Password}
             onChange={handleInputChange}
           />
-          <button className="login-button" onClick={handleLogin} type="submit">
+          <button className="login-button" onClick={handleLogin}>
             Continue
           </button>
         </form>
@@ -114,9 +87,7 @@ function Login() {
           Notice
         </p>
         <Link to="/Signup">
-          <button className="register-button" type="submit">
-            Create your Amazon account
-          </button>
+          <button className="register-button">Create your Amazon account</button>
         </Link>
       </div>
     </div>

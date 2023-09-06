@@ -7,13 +7,12 @@ import { MdArrowDropDown } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { logout } from "../../redux/dataSlice";
 import { toast } from "react-toastify";
-import { useCookies } from "react-cookie";
 import "./Navbar.css";
 
 function Navbar() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.data.cartItems);
-  const { userId, userName } = useSelector((state) => state.data);
+  const token = useSelector((state) => state.data.token);
   const [isOpen, setIsOpen] = useState(false);
   const [searchInput, setsearchInput] = useState("");
   const nav = useNavigate();
@@ -21,11 +20,10 @@ function Navbar() {
   function toggleDropdown() {
     setIsOpen(!isOpen);
   }
-  
+
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
-      useCookies(["token"], { expires: new Date(0) });
       dispatch(logout());
       toast.success("Logout Successfully");
       nav("/");
@@ -92,7 +90,7 @@ function Navbar() {
         </div>
 
         <div className="headerNav">
-          {userId ? (
+          {token ? (
             <div className="header_link">
               <div className="header_option" onClick={handleLogout}>
                 <span className="lineone">Hello{userName}</span>

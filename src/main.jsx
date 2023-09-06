@@ -11,7 +11,7 @@ import AdminForm from "./components/adminlogin/adminForm"
 import App from "./App";
 import "./index.css";
 import { store } from "./redux/store";
-import { fetchProducts } from "./redux/dataSlice";
+import { fetchProductItems } from "./redux/dataSlice";
 
 const router = createBrowserRouter([
   {
@@ -52,4 +52,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   </Provider>
 );
 
-store.dispatch(fetchProducts());
+store.dispatch(fetchProductItems());
